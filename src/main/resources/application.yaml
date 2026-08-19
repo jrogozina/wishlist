@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/wishlist
+    username: postgres
+    password: ${DB_PASSWORD:mysecretpassword}
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  application:
+    name: wishlist
