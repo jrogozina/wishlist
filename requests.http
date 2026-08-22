@@ -1,0 +1,8 @@
+### Создать вишлист
+POST http://localhost:8080/api/wishlists?ownerId=1
+Content-Type: application/json
+
+{
+  "title": "День рождения",
+  "description": "Список подарков"
+}
