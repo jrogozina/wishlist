@@ -19,4 +19,9 @@ public class WishlistController {
                                    @RequestParam Long ownerId) {
         return wishlistService.create(request, ownerId);
     }
+
+    @GetMapping("/{id}")
+    public WishlistResponse getById(@PathVariable Long id) {
+        return wishlistService.getById(id);
+    }
 }

@@ -24,14 +24,24 @@ public class WishlistService {
 
         Wishlist wishlist = new Wishlist(owner, request.title(), request.description());
         Wishlist saved = wishlistRepository.save(wishlist);
+        return toResponse(saved);
 
+    }
+
+    @Transactional(readOnly = true)
+    public WishlistResponse getById(Long id) {
+        Wishlist wishlist = wishlistRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Wishlist not found: " + id));
+        return toResponse(wishlist);
+    }
+
+    private WishlistResponse toResponse(Wishlist wishlist) {
         return new WishlistResponse(
-                saved.getId(),
-                saved.getTitle(),
-                saved.getDescription(),
-                saved.getShareToken(),
-                saved.getCreatedAt()
-        );
+                wishlist.getId(),
+                wishlist.getTitle(),
+                wishlist.getDescription(),
+                wishlist.getShareToken(),
+                wishlist.getCreatedAt());
     }
 }
 

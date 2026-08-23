@@ -6,3 +6,9 @@ Content-Type: application/json
   "title": "День рождения",
   "description": "Список подарков"
 }
+
+### Получить вишлист по id
+GET http://localhost:8080/api/wishlists/1
+
+### Несуществующий вишлист
+GET http://localhost:8080/api/wishlists/999
