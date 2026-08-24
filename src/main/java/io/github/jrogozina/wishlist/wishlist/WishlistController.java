@@ -1,5 +1,6 @@
 package io.github.jrogozina.wishlist.wishlist;
 
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ public class WishlistController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public WishlistResponse create(@RequestBody CreateWishlistRequest request,
+    public WishlistResponse create(@Valid @RequestBody CreateWishlistRequest request,
                                    @RequestParam Long ownerId) {
         return wishlistService.create(request, ownerId);
     }
@@ -34,7 +35,7 @@ public class WishlistController {
 
     @PutMapping("/{id}")
     public WishlistResponse update(@PathVariable Long id,
-                                   @RequestBody UpdateWishlistRequest request) {
+                                   @Valid @RequestBody UpdateWishlistRequest request) {
         return wishlistService.update(id, request);
 
     }
