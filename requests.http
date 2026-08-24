@@ -3,7 +3,7 @@ POST http://localhost:8080/api/wishlists?ownerId=1
 Content-Type: application/json
 
 {
-  "title": "День рождения",
+  "title": "Новый год",
   "description": "Список подарков"
 }
 
@@ -12,3 +12,21 @@ GET http://localhost:8080/api/wishlists/1
 
 ### Несуществующий вишлист
 GET http://localhost:8080/api/wishlists/999
+
+### Список вишлистов пользователя
+GET http://localhost:8080/api/wishlists?ownerId=1
+
+### Обновить вишлист
+PUT http://localhost:8080/api/wishlists/2
+Content-Type: application/json
+
+{
+  "title": "Новый год 2027",
+  "description": "Обновлённый список"
+}
+
+### Удалить вишлист
+DELETE http://localhost:8080/api/wishlists/2
+
+### Проверить, что удалён
+GET http://localhost:8080/api/wishlists/2

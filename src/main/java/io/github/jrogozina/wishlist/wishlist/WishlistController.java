@@ -3,6 +3,8 @@ package io.github.jrogozina.wishlist.wishlist;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/wishlists")
 public class WishlistController {
@@ -23,5 +25,23 @@ public class WishlistController {
     @GetMapping("/{id}")
     public WishlistResponse getById(@PathVariable Long id) {
         return wishlistService.getById(id);
+    }
+
+    @GetMapping
+    public List<WishlistResponse> getAllByOwner(@RequestParam Long ownerId) {
+        return wishlistService.getAllByOwner(ownerId);
+    }
+
+    @PutMapping("/{id}")
+    public WishlistResponse update(@PathVariable Long id,
+                                   @RequestBody UpdateWishlistRequest request) {
+        return wishlistService.update(id, request);
+
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Long id) {
+        wishlistService.delete(id);
     }
 }
