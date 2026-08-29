@@ -30,3 +30,46 @@ DELETE http://localhost:8080/api/wishlists/2
 
 ### Проверить, что удалён
 GET http://localhost:8080/api/wishlists/2
+
+### Создать товар
+POST http://localhost:8080/api/wishlists/1/items
+Content-Type: application/json
+
+{
+  "name": "Наушники Sony WH-1000XM5",
+  "url": "https://example.com/headphones",
+  "price": 29990.00,
+  "imageUrl": "https://example.com/img.jpg"
+}
+
+### Список товаров вишлиста
+GET http://localhost:8080/api/wishlists/1/items
+
+### Получить товар
+GET http://localhost:8080/api/items/3
+
+### Обновить товар
+PUT http://localhost:8080/api/items/3
+Content-Type: application/json
+
+{
+  "name": "Наушники Sony WH-1000XM5 (чёрные)",
+  "url": "https://example.com/headphones",
+  "price": 27990.00,
+  "imageUrl": "https://example.com/img.jpg"
+}
+
+### Удалить товар
+DELETE http://localhost:8080/api/items/1
+
+### Товара нет
+GET http://localhost:8080/api/items/999
+
+### Товар без имени (валидация)
+POST http://localhost:8080/api/wishlists/1/items
+Content-Type: application/json
+
+{
+  "name": "",
+  "url": "https://example.com/x"
+}
