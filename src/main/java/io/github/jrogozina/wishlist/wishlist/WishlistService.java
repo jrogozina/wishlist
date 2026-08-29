@@ -24,11 +24,9 @@ public class WishlistService {
     public WishlistResponse create(CreateWishlistRequest request, Long ownerId) {
         User owner = userRepository.findById(ownerId)
                 .orElseThrow(() -> new NotFoundException("User not found: " + ownerId));
-
         Wishlist wishlist = new Wishlist(owner, request.title(), request.description());
         Wishlist saved = wishlistRepository.save(wishlist);
         return toResponse(saved);
-
     }
 
     @Transactional(readOnly = true)

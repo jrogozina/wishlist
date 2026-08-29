@@ -1,22 +1,22 @@
-### Создать вишлист
+### Create wishlist
 POST http://localhost:8080/api/wishlists?ownerId=1
 Content-Type: application/json
 
 {
-  "title": "",
+  "title": "Новый год",
   "description": "Список подарков"
 }
 
-### Получить вишлист по id
+### Get wishlist by id
 GET http://localhost:8080/api/wishlists/1
 
-### Несуществующий вишлист
+### Wishlist not found
 GET http://localhost:8080/api/wishlists/999
 
-### Список вишлистов пользователя
+### List user wishlists
 GET http://localhost:8080/api/wishlists?ownerId=1
 
-### Обновить вишлист
+### Update wishlist
 PUT http://localhost:8080/api/wishlists/2
 Content-Type: application/json
 
@@ -25,13 +25,13 @@ Content-Type: application/json
   "description": "Обновлённый список"
 }
 
-### Удалить вишлист
+### Delete wishlist
 DELETE http://localhost:8080/api/wishlists/2
 
-### Проверить, что удалён
+### Verify deletion
 GET http://localhost:8080/api/wishlists/2
 
-### Создать товар
+### Create item
 POST http://localhost:8080/api/wishlists/1/items
 Content-Type: application/json
 
@@ -42,13 +42,13 @@ Content-Type: application/json
   "imageUrl": "https://example.com/img.jpg"
 }
 
-### Список товаров вишлиста
+### List wishlist items
 GET http://localhost:8080/api/wishlists/1/items
 
-### Получить товар
+### Get item
 GET http://localhost:8080/api/items/3
 
-### Обновить товар
+### Update item
 PUT http://localhost:8080/api/items/3
 Content-Type: application/json
 
@@ -59,13 +59,13 @@ Content-Type: application/json
   "imageUrl": "https://example.com/img.jpg"
 }
 
-### Удалить товар
-DELETE http://localhost:8080/api/items/1
+### Delete item
+DELETE http://localhost:8080/api/items/3
 
-### Товара нет
+### Item not found
 GET http://localhost:8080/api/items/999
 
-### Товар без имени (валидация)
+### Item without name (validation)
 POST http://localhost:8080/api/wishlists/1/items
 Content-Type: application/json
 

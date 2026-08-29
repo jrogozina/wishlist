@@ -37,7 +37,6 @@ public class WishlistController {
     public WishlistResponse update(@PathVariable Long id,
                                    @Valid @RequestBody UpdateWishlistRequest request) {
         return wishlistService.update(id, request);
-
     }
 
     @DeleteMapping("/{id}")

@@ -49,7 +49,7 @@ public class ItemService {
     }
 
     @Transactional
-    public ItemResponse update(Long id, UpdateItemRequest request){
+    public ItemResponse update(Long id, UpdateItemRequest request) {
         WishlistItem item = wishlistItemRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Item not found: " + id));
 
@@ -62,8 +62,8 @@ public class ItemService {
     }
 
     @Transactional
-    public void delete(Long id){
-        if (!wishlistItemRepository.existsById(id)){
+    public void delete(Long id) {
+        if (!wishlistItemRepository.existsById(id)) {
             throw new NotFoundException("Item not found: " + id);
         }
         wishlistItemRepository.deleteById(id);
