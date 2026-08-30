@@ -1,0 +1,75 @@
+### Create wishlist
+POST http://localhost:8080/api/wishlists?ownerId=1
+Content-Type: application/json
+
+{
+  "title": "Новый год",
+  "description": "Список подарков"
+}
+
+### Get wishlist by id
+GET http://localhost:8080/api/wishlists/1
+
+### Wishlist not found
+GET http://localhost:8080/api/wishlists/999
+
+### List user wishlists
+GET http://localhost:8080/api/wishlists?ownerId=1
+
+### Update wishlist
+PUT http://localhost:8080/api/wishlists/2
+Content-Type: application/json
+
+{
+  "title": "Новый год 2027",
+  "description": "Обновлённый список"
+}
+
+### Delete wishlist
+DELETE http://localhost:8080/api/wishlists/2
+
+### Verify deletion
+GET http://localhost:8080/api/wishlists/2
+
+### Create item
+POST http://localhost:8080/api/wishlists/1/items
+Content-Type: application/json
+
+{
+  "name": "Наушники Sony WH-1000XM5",
+  "url": "https://example.com/headphones",
+  "price": 29990.00,
+  "imageUrl": "https://example.com/img.jpg"
+}
+
+### List wishlist items
+GET http://localhost:8080/api/wishlists/1/items
+
+### Get item
+GET http://localhost:8080/api/items/3
+
+### Update item
+PUT http://localhost:8080/api/items/3
+Content-Type: application/json
+
+{
+  "name": "Наушники Sony WH-1000XM5 (чёрные)",
+  "url": "https://example.com/headphones",
+  "price": 27990.00,
+  "imageUrl": "https://example.com/img.jpg"
+}
+
+### Delete item
+DELETE http://localhost:8080/api/items/3
+
+### Item not found
+GET http://localhost:8080/api/items/999
+
+### Item without name (validation)
+POST http://localhost:8080/api/wishlists/1/items
+Content-Type: application/json
+
+{
+  "name": "",
+  "url": "https://example.com/x"
+}
