@@ -73,3 +73,41 @@ Content-Type: application/json
   "name": "",
   "url": "https://example.com/x"
 }
+
+### Register
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "julia3",
+  "email": "julia@test.com",
+  "password": "supersecret123"
+}
+
+### Register with taken username (409)
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "julia2",
+  "email": "oother@test.com",
+  "password": "supersecret123"
+}
+
+### Login
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "julia2",
+  "password": "supersecret123"
+}
+
+### Login with wrong password (401)
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "julia2",
+  "password": "wrongpassword"
+}

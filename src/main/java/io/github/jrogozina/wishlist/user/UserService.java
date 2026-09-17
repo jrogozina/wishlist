@@ -1,6 +1,8 @@
 package io.github.jrogozina.wishlist.user;
 
 import io.github.jrogozina.wishlist.common.ConflictException;
+import io.github.jrogozina.wishlist.common.JwtService;
+import io.github.jrogozina.wishlist.common.UnauthorizedException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,10 +12,14 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository,
+                       PasswordEncoder passwordEncoder,
+                       JwtService jwtService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtService = jwtService;
     }
 
     @Transactional
@@ -36,6 +42,20 @@ public class UserService {
         User saved = userRepository.save(user);
 
         return toResponse(saved);
+    }
+
+    @Transactional(readOnly = true)
+    public AuthResponse login(LoginRequest request) {
+        User user = userRepository.findByUsername(request.username())
+                .orElseThrow(() -> new UnauthorizedException("Invalid username or password"));
+
+        if (!passwordEncoder.matches(request.password(), user.getPasswordHash())) {
+            throw new UnauthorizedException("Invalid username or password");
+        }
+
+        String token = jwtService.generateToken(user.getUsername());
+
+        return new AuthResponse(token);
     }
 
     private UserResponse toResponse(User user) {
